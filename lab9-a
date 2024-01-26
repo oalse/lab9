@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haraj Registration</title>
+    <style>
+   
+    </style>
+</head>
+<body>
+
+    <h2>Haraj Registration</h2>
+
+    <form id="registrationForm" onsubmit="return validateForm()">
+  
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="KSA">Saudi Arabia</option>
+            <option value="UAE">United Arab Emirates</option>
+            <option value="KWT">kuwait</option>
+            <option value="QTR">Qatar</option>
+        </select>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number">
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        function validateForm() {
+
+            var selectedCountry = document.getElementById("country").value;
+
+            var phoneNumber = document.getElementById("phoneNumber").value;
+
+            if (selectedCountry === "KSA") {
+                var ksaPattern = /^05\d{8}$/;
+                if (!ksaPattern.test(phoneNumber)) {
+                    alert("Invalid phone number for KSA. It should start with 05 and be 10 digits.");
+                    return false;
+                }
+            } else {
+                var otherCountryPattern = /^(00966|\+966)[\s-]?\d{8,11}$/;
+                if (!otherCountryPattern.test(phoneNumber)) {
+                    alert("Invalid phone number for other countries. It should start with 00966 or +966, optionally followed by a space or - and then 8 to 11 digits.");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    </script>
+
+</body>
+</html>
